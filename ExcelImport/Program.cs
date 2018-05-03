@@ -106,7 +106,7 @@ namespace ExcelImportExport
         {
             using (var context = new ComplexContext("sample.xls"))
             {
-                var query = from a in context.Products
+                var query = from a in context.Orders.Include(a=>a.Details)
                             where a.Id > 4
                             select a;
                 var items = query.Take(10).Skip(20).ToArray();
